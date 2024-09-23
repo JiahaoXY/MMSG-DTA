@@ -25,7 +25,7 @@ def main():
     args = parser.parse_args()
 
     params = dict(
-        save_dir="/data1/xjh2022388536/project/MGNNSDTA/results/all",
+        save_dir="/results/all",
         dataset=args.dataset,
         save_model=args.save_model,
         lr=args.lr,
