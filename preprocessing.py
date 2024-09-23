@@ -19,7 +19,7 @@ VOCAB_PROTEIN = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P'
                 'X']
 
 def read_data(filename):
-    df = pd.read_csv('/data1/xjh2022388536/project/MGNNSDTA/dataset/'+filename)
+    df = pd.read_csv('dataset/'+filename)
     drugs, prots= list(df['compound_iso_smiles']),list(df['target_sequence'])
     return drugs, prots
 
@@ -288,14 +288,14 @@ def smile2graph(smile):
     return mol_size, node_attr, edge_index, edge_attr
 
 def create_dataset(dataset):
-    dataset_dir = os.path.join('/data1/xjh2022388536/project/MGNNSDTA/dataset',dataset)
+    dataset_dir = os.path.join('/dataset',dataset)
     # drug smiles
     ligands = json.load(open(os.path.join(dataset_dir, 'ligands_can.txt')), object_pairs_hook=OrderedDict)
     # protein sequences
     proteins = json.load(open(os.path.join(dataset_dir, 'proteins.txt')), object_pairs_hook=OrderedDict)
 
     # load protein feature and predicted distance map
-    process_dir = os.path.join('/data1/xjh2022388536/project/MGNNSDTA/dataset/')
+    process_dir = os.path.join('dataset/')
     pro_distance_dir = os.path.join(process_dir, dataset, 'pconsc4')  # numpy .npy file
     pro_msa_path = os.path.join(process_dir, dataset, 'aln')  # numpy .npy file
 
@@ -344,10 +344,10 @@ def create_dataset(dataset):
     #train_drugs, train_prots, train_Y = np.asarray(train_drugs), np.asarray(train_prots), np.asarray(train_Y)
     test_drugs, test_prots = np.asarray(test_drugs), np.asarray(test_prots)
     
-    #train_data = DTADataset(root='/data1/xjh2022388536/project/MGNNSDTA/dataset', dataset=dataset + '_' + 'train', drug_smiles=train_drugs, target_sequence=train_prots, y=train_Y,
+    #train_data = DTADataset(root='dataset', dataset=dataset + '_' + 'train', drug_smiles=train_drugs, target_sequence=train_prots, y=train_Y,
                             #smile_graph=smile_graph,target_graph=target_graph)
     
-    test_data = DTADataset(root='/data1/xjh2022388536/project/MGNNSDTA/dataset', dataset=dataset + '_' + 'test', drug_smiles=test_drugs, target_sequence=test_prots,
+    test_data = DTADataset(root='dataset', dataset=dataset + '_' + 'test', drug_smiles=test_drugs, target_sequence=test_prots,
                         smile_graph=smile_graph, target_graph=target_graph)
 
     return test_data
