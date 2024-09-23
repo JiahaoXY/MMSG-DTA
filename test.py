@@ -46,7 +46,7 @@ model = MGNNDTA().to(device)
 _,test_data = create_dataset(dataset)
 test_loader = DataLoader(test_data, batch_size=512, shuffle=False, collate_fn=collate)
 
-model_file_name = '/data1/xjh2022388536/project/MGNNSDTA/results/all/20240808_131814_metz/model/epoch-1876, mse-0.2543.pt'
+model_file_name = ''
 if os.path.isfile(model_file_name):
     model.load_state_dict(torch.load(model_file_name,map_location=torch.device('cpu')),strict=False)
     G,P = predicting(model, device, test_loader)
