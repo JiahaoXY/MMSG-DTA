@@ -30,7 +30,7 @@ Example format of the CSV file:
   python graph_prepare.py --dataset dataset
   ```     
     Running graph_prepare.py create the contact map of the protein.
-    If you prefer not to generate the contact map for the graph yourself, you can find it available for download at https://zenodo.org/records/14444598.
+    If you prefer not to generate the contact map for the graph yourself, you can find it available for download at [https://zenodo.org/records/14444598](https://zenodo.org/records/14447242).
   - --dataset: davis/kiba/metz
   
 - Second, run train.py using
