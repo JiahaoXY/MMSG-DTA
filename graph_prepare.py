@@ -110,9 +110,10 @@ if __name__ == '__main__':
             return pickle.load(f)  # Load the object from the pickle file
 
     # Define the dataset to process
-    dataset = 'EGFR'
-    
-    if dataset in ['kiba', 'davis', 'Metz', 'EGFR']:
+    parser.add_argument('--dataset', required=True, help='davis or kiba')
+    args = parser.parse_args()
+    dataset = args.dataset
+    if dataset in ['kiba', 'davis', 'Metz']:
         # Load the protein data from a JSON file
         proteins = json.load(open('dataset/' + dataset + '/proteins.txt'))  # Read protein sequences
 
