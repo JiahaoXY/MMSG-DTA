@@ -38,7 +38,7 @@ Example format of the CSV file:
 - To test a trained model please run test.py using
 ```markdown
     python test.py --dataset dataset --model_path model_path
-
+```
 ### Train/test MMSG-DTA on more realistic settings
 - First, Use the Cold_data_split.py in the Code folder to split dataset in cold setting
     The name of the dataset can be set to "davis" or "kiba" by "dataset_name".
