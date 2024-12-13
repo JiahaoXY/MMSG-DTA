@@ -1,5 +1,4 @@
-# MMSG-DTA
-#MMSG-DTA: A Multimodal, Multiscale Model Based on Sequence and Graph Modalities for Drug-Target Affinity Prediction
+# MMSG-DTA: A Multimodal, Multiscale Model Based on Sequence and Graph Modalities for Drug-Target Affinity Prediction
 MMSG-DTA combines graph neural networks with Transformers to effectively capture both local node-level features and global structural features of molecular graphs. Additionally, a graph-based modality is employed to improve the extraction of protein features from amino acid sequences. To further enhance the model's performance, an attention-based feature fusion module is incorporated to integrate diverse feature types, thereby strengthening its representation capacity and robustness.
 
 ## Dataset
@@ -15,10 +14,10 @@ The model requires data files in the following format:
 data.csv: The dataset should include the drug ID, SMILES representation, as well as the target ID and its corresponding amino acid sequence.
 Example format of the CSV file:
 
-| drug_key | compound_iso_smiles                                                                 | target_key | target_sequence  | affinity |
-|----------|--------------------------------------------------------------------------------------|------------|--------------------------|----------|
-| 11338033 | O=C(NC1CCNCC1)c1[nH]ncc1NC(=O)c1c(Cl)cccc1Cl                                       | FLT1       | MVSYWDTGVLLCALLSCLLLTG...STPPI | 5.0 |
-| 447077   | CSc1cccc(Nc2ncc3cc(-c4c(Cl)cccc4Cl)c(=O)n(C)c3n2)c1                            | TRKA       | MLRGGRRGQLGWHSWAAGPGSLLAWL...QAPPVYLDVLG | 5.0 |
+| drug_key | compound_iso_smiles                                              | target_key | target_sequence  | affinity |
+|----------|------------------------------------------------------------------|------------|--------------------------|----------|
+| 11338033 | O=C(NC1CCNCC1)c1[nH]ncc1NC(=O)c1c(Cl)cccc1Cl                     | FLT1       | MVSYWDTGVLLCALLSCLLLTG...STPPI | 5.0 |
+| 447077   | CSc1cccc(Nc2ncc3cc(-c4c(Cl)cccc4Cl)c(=O)n(C)c3n2)c1              | TRKA       | MLRGGRRGQLGWHSWAAGPGSLLAWL...QAPPVYLDVLG | 5.0 |
 
 ## Step-by-step running:
 ### Train/test MMSG-DTA
