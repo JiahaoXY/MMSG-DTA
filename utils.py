@@ -91,6 +91,7 @@ VOCAB_LIGAND = {"#": 29, "%": 30, ")": 31, "(": 1, "+": 32, "-": 33, "/": 34, ".
 				"V": 18, "Y": 52, "[": 53, "Z": 19, "]": 54, "\\": 20, "a": 55, "c": 56,
 				"b": 21, "e": 57, "d": 22, "g": 58, "f": 23, "i": 59, "h": 24, "m": 60,
 				"l": 25, "o": 61, "n": 26, "s": 62, "r": 27, "u": 63, "t": 28, "y": 64}
+
 def PROTEIN2INT(target):
     return [VOCAB_PROTEIN[s] for s in target] 
 
@@ -99,17 +100,17 @@ def MOL2INT(smi):
 # initialize the dataset
 class DTADataset(InMemoryDataset):
     def __init__(self, root='data', dataset='davis',
-                drug_smiles=None, target_sequence=None, x=None, x_mask=None, xt=None, xt_mask=None, transform=None,
+                drug_smiles=None, target_sequence=None, x=None, x_mask=None, xt=None, xt_mask=None, y=None, transform=None,
                 pre_transform=None, smile_graph=None,  target_graph=None):
         super(DTADataset, self).__init__(root, transform, pre_transform)
         self.dataset = dataset
         self.drug_smiles = drug_smiles
         self.target_sequence = target_sequence
-        #self.y = y
+        self.y = y
         self.smile_graph = smile_graph
         self.target_graph = target_graph
 
-        self.process(drug_smiles, target_sequence, x, x_mask, xt, xt_mask, smile_graph, target_graph)
+        self.process(drug_smiles, target_sequence, x, x_mask, xt, xt_mask, y, smile_graph, target_graph)
 
     @property
     def raw_file_names(self):
@@ -130,14 +131,12 @@ class DTADataset(InMemoryDataset):
         if not os.path.exists(self.processed_dir):
             os.makedirs(self.processed_dir)
 
-    def process(self, drug_smiles=None, target_sequence=None, x=None, x_mask=None, xt=None, xt_mask=None,  smile_graph=None, target_graph=None):
-        assert (len(drug_smiles) == len(target_sequence)) 
-
+    def process(self, drug_smiles=None, target_sequence=None, x=None, x_mask=None, xt=None, xt_mask=None, y=None, smile_graph=None, target_graph=None):
+        assert (len(drug_smiles) == len(target_sequence) and len(drug_smiles) == len(y)), 'The three lists must have the same length!'
         data_list_mol = []
         data_list_pro = []
 
         data_len = len(drug_smiles)
-        print(len(drug_smiles))
         print('loading tensors ...')
         for i in tqdm(range(data_len)):
 
@@ -151,7 +150,7 @@ class DTADataset(InMemoryDataset):
                 target = xt[i]
             if xt_mask is not None:
                 target_mask = xt_mask[i]
-            #labels = y[i]
+            labels = y[i]
             mol_size, mol_features, mol_edge_index, mol_edge_attr= smile_graph[smiles]
             target_size, target_features, target_edge_index, target_edge_weight = target_graph[tar_seq]
 
@@ -164,8 +163,8 @@ class DTADataset(InMemoryDataset):
             GCNData_mol = DATA.Data(x=mol_features,
                                     edge_index=mol_edge_index,
                                     edge_attr = mol_edge_attr,
-                                    mol_emb = torch.LongTensor([mol_seq_emb]))
-                                    #y=torch.FloatTensor([labels]))
+                                    mol_emb = torch.LongTensor([mol_seq_emb]),
+                                    y=torch.FloatTensor([labels]))
             if x is not None:
                 GCNData_mol.drug = torch.LongTensor([drug])
             if x_mask is not None:
@@ -182,8 +181,8 @@ class DTADataset(InMemoryDataset):
             GCNData_pro = DATA.Data(x=target_features,
                                     edge_index=target_edge_index,
                                     edge_attr = target_edge_weight,
-                                    pro_emb = torch.LongTensor([pro_seq_emb]))
-                                    #y=torch.FloatTensor([labels]))
+                                    pro_emb = torch.LongTensor([pro_seq_emb]),
+                                    y=torch.FloatTensor([labels]))
             
             if xt is not None:
                 GCNData_pro.target = torch.LongTensor([target])
@@ -193,6 +192,7 @@ class DTADataset(InMemoryDataset):
 
             data_list_mol.append(GCNData_mol)
             data_list_pro.append(GCNData_pro)
+
 
         if self.pre_filter is not None:
             data_list_mol = [data for data in data_list_mol if self.pre_filter(data)]
@@ -208,7 +208,7 @@ class DTADataset(InMemoryDataset):
 
 
     def __len__(self):
-        return len(self.drug_smiles)
+        return len(self.y)
 
     def __getitem__(self, idx):
         # return GNNData_mol, GNNData_pro
@@ -218,6 +218,3 @@ def collate(data_list):
     batchA = Batch.from_data_list([data[0] for data in data_list])
     batchB = Batch.from_data_list([data[1] for data in data_list])
     return batchA, batchB
-
-
-
