@@ -36,6 +36,8 @@ Example format of the CSV file:
   - --batch_size: default = 512
 
 - To test a trained model please run test.py using
+```markdown
+```python
     `python test.py --dataset dataset --model_path model_path`
 
 ### Train/test MMSG-DTA on more realistic settings
