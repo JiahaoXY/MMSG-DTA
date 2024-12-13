@@ -43,7 +43,7 @@ Example format of the CSV file:
 ```markdown
     python test.py --dataset dataset --model_path model_path
 ```
-### Train/test MMSG-DTA on more realistic settings
+### Drug/Target/All split
 - First, Use the Cold_data_split.py in the Code folder to split dataset in cold setting
     The name of the dataset can be set to "davis" or "kiba" by "dataset_name".
     The random seed can be set by "SEED"
