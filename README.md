@@ -22,11 +22,15 @@ Example format of the CSV file:
 ## Step-by-step running:
 ### Train/test MMSG-DTA
 - First, run graph_prepare.py using
-  `python graph_prepare.py --dataset dataset` 
+  ```markdown
+  python graph_prepare.py --dataset dataset
+  ```     
     Running graph_prepare.py create the contact map of the protein. 
   - --dataset: davis/kiba/metz
 - Second, run train.py using
-    `python train.py --dataset davis --save_model`
+  ```markdown
+  python train.py --dataset davis --save_model
+  ```
     to train MMSG-DTA.
   Explanation of parameters
 
@@ -44,5 +48,7 @@ Example format of the CSV file:
     The name of the dataset can be set to "davis" or "kiba" by "dataset_name".
     The random seed can be set by "SEED"
 
-    `python split.py --dataset davis --SEED 42`
+    ```markdown
+    python split.py --dataset davis --SEED 42
+    ```
     Then you will get the training, validation and test data sets of the three cold start settings corresponding to the data set.
