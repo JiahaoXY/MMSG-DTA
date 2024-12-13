@@ -99,33 +99,33 @@ def create_fold_setting_cold(df, fold_seed, frac, entities):
         "test": test.reset_index(drop=True),
     }
 
-dataset_name = 'davis'
+dataset = 'davis'
 
 SEED = 42
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset_name", type=str, default=dataset_name)
+    parser.add_argument("--dataset", type=str, default='davis')
     parser.add_argument("--SEED", type=int, default=SEED)
 
     args = parser.parse_args()
     # read data
-    df = pd.read_csv("../Data/" + args.dataset_name + ".csv")
+    df = pd.read_csv("../Data/" + args.dataset + ".csv")
     # create folds
     cold_target_fold = create_fold_setting_cold(df, args.SEED, [0.8, 0.1, 0.1], ['target_key'])
-    cold_target_fold["train"].to_csv("datasets/" + args.dataset_name + "_cold_target_train_"+str(args.SEED)+".csv", index=False)
-    cold_target_fold["valid"].to_csv("datasets/" + args.dataset_name + "_cold_target_valid_"+str(args.SEED)+".csv", index=False)
-    cold_target_fold["test"].to_csv("datasets/" + args.dataset_name + "_cold_target_test_"+str(args.SEED)+".csv", index=False)
-    print(args.dataset_name+ " cold_target_fold done!  the shape of train, valid, test are: ", cold_target_fold["train"].shape, cold_target_fold["valid"].shape, cold_target_fold["test"].shape)
+    cold_target_fold["train"].to_csv("datasets/" + args.dataset + "_cold_target_train_"+str(args.SEED)+".csv", index=False)
+    cold_target_fold["valid"].to_csv("datasets/" + args.dataset + "_cold_target_valid_"+str(args.SEED)+".csv", index=False)
+    cold_target_fold["test"].to_csv("datasets/" + args.dataset + "_cold_target_test_"+str(args.SEED)+".csv", index=False)
+    print(args.dataset+ " cold_target_fold done!  the shape of train, valid, test are: ", cold_target_fold["train"].shape, cold_target_fold["valid"].shape, cold_target_fold["test"].shape)
 
     cold_drug_fold = create_fold_setting_cold(df, args.SEED, [0.8, 0.1, 0.1], ['compound_iso_smiles'])
-    cold_drug_fold["train"].to_csv("datasets//" + args.dataset_name + "_cold_drug_train_"+str(args.SEED)+".csv", index=False)
-    cold_drug_fold["valid"].to_csv("datasets//" + args.dataset_name + "_cold_drug_valid_"+str(args.SEED)+".csv", index=False)
-    cold_drug_fold["test"].to_csv("datasets/" + args.dataset_name + "_cold_drug_test_"+str(args.SEED)+".csv", index=False)
-    print(args.dataset_name+ " cold_drug_fold done!  the shape of train, valid, test are: ", cold_drug_fold["train"].shape, cold_drug_fold["valid"].shape, cold_drug_fold["test"].shape)
+    cold_drug_fold["train"].to_csv("datasets//" + args.dataset + "_cold_drug_train_"+str(args.SEED)+".csv", index=False)
+    cold_drug_fold["valid"].to_csv("datasets//" + args.dataset + "_cold_drug_valid_"+str(args.SEED)+".csv", index=False)
+    cold_drug_fold["test"].to_csv("datasets/" + args.dataset + "_cold_drug_test_"+str(args.SEED)+".csv", index=False)
+    print(args.dataset+ " cold_drug_fold done!  the shape of train, valid, test are: ", cold_drug_fold["train"].shape, cold_drug_fold["valid"].shape, cold_drug_fold["test"].shape)
 
     cold_target_drug_fold = create_fold_setting_cold(df, args.SEED, [0.8, 0.1, 0.1], ['target_key', 'compound_iso_smiles'])
-    cold_target_drug_fold["train"].to_csv("datasets/" + args.dataset_name + "_cold_target_drug_train_"+str(args.SEED)+".csv", index=False)
-    cold_target_drug_fold["valid"].to_csv("datasets/" + args.dataset_name + "_cold_target_drug_valid_"+str(args.SEED)+".csv", index=False)
-    cold_target_drug_fold["test"].to_csv("datasets/" + args.dataset_name + "_cold_target_drug_test_"+str(args.SEED)+".csv", index=False)
-    print(args.dataset_name+ " cold_target_drug_fold done!  the shape of train, valid, test are: ", cold_target_drug_fold["train"].shape, cold_target_drug_fold["valid"].shape, cold_target_drug_fold["test"].shape)
+    cold_target_drug_fold["train"].to_csv("datasets/" + args.dataset + "_cold_target_drug_train_"+str(args.SEED)+".csv", index=False)
+    cold_target_drug_fold["valid"].to_csv("datasets/" + args.dataset + "_cold_target_drug_valid_"+str(args.SEED)+".csv", index=False)
+    cold_target_drug_fold["test"].to_csv("datasets/" + args.dataset + "_cold_target_drug_test_"+str(args.SEED)+".csv", index=False)
+    print(args.dataset+ " cold_target_drug_fold done!  the shape of train, valid, test are: ", cold_target_drug_fold["train"].shape, cold_target_drug_fold["valid"].shape, cold_target_drug_fold["test"].shape)
