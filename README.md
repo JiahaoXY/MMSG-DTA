@@ -1,7 +1,8 @@
 # MMSG-DTA: A Multimodal, Multiscale Model Based on Sequence and Graph Modalities for Drug-Target Affinity Prediction
 MMSG-DTA combines graph neural networks with Transformers to effectively capture both local node-level features and global structural features of molecular graphs. Additionally, a graph-based modality is employed to improve the extraction of protein features from amino acid sequences. To further enhance the model's performance, an attention-based feature fusion module is incorporated to integrate diverse feature types, thereby strengthening its representation capacity and robustness.
-![Overview of ours model](./路径/图片文件名.png)
-
+```
+![Overview of ours model](./figures/overview)
+```
 ## License
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 ## Dataset
