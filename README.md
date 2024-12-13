@@ -47,14 +47,18 @@ Example format of the CSV file:
 
 - To test a trained model please run test.py using
 ```markdown
-    python test.py --dataset dataset --model_path model_path
+python test.py --dataset dataset --model_path model_path
 ```
+  - --dataset: davis/kiba/metz
+  - --model_path: Path to store the weight files
 ### Drug/Target/All split
 - First, Use the Cold_data_split.py in the Code folder to split dataset in cold setting
     The name of the dataset can be set to "davis" or "kiba" by "dataset_name".
-    The random seed can be set by "SEED"
+    
 
     ```markdown
     python split.py --dataset davis --SEED 42
     ```
+  - --dataset: davis or kiba
+  - --SEED: The random seed can be set by "SEED"
     Then you will get the training, validation and test data sets of the three cold start settings corresponding to the data set.
