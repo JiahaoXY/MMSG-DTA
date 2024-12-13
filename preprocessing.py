@@ -20,8 +20,8 @@ VOCAB_PROTEIN = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P'
 
 def read_data(filename):
     df = pd.read_csv('dataset/'+filename)
-    drugs, prots= list(df['compound_iso_smiles']),list(df['target_sequence'])
-    return drugs, prots
+    drugs, prots, Y = list(df['compound_iso_smiles']),list(df['target_sequence']),list(df['affinity'])
+    return drugs, prots, Y
 
 def dic_normalize(dic):
     max_value = dic[max(dic, key=dic.get)]
@@ -288,7 +288,7 @@ def smile2graph(smile):
     return mol_size, node_attr, edge_index, edge_attr
 
 def create_dataset(dataset):
-    dataset_dir = os.path.join('/dataset',dataset)
+    dataset_dir = os.path.join('dataset',dataset)
     # drug smiles
     ligands = json.load(open(os.path.join(dataset_dir, 'ligands_can.txt')), object_pairs_hook=OrderedDict)
     # protein sequences
@@ -308,11 +308,11 @@ def create_dataset(dataset):
     print("create molecule graph ...")
     # smiles
     for d in ligands.keys():
-        # if dataset == 'metz':
-        #     lg = ligands[d]
-        # else:
-        #     lg = Chem.MolToSmiles(Chem.MolFromSmiles(ligands[d]), isomericSmiles=True)
-        lg = ligands[d]
+        if dataset == 'metz':
+            lg = ligands[d]
+        else:
+            lg = Chem.MolToSmiles(Chem.MolFromSmiles(ligands[d]), isomericSmiles=True)
+        #lg = ligands[d]
         drugs.append(lg)
         drug_smiles.append(ligands[d])
         smile_graph = {}
@@ -336,18 +336,18 @@ def create_dataset(dataset):
         target_graph[protein] = g_t
     
     # read files(train and test)
-    #train_csv = dataset + '/raw/data_train.csv'
+    train_csv = dataset + '/raw/data_train.csv'
     test_csv = dataset + '/raw/data_test.csv'
-    #train_drugs, train_prots, train_Y = read_data(train_csv)
-    test_drugs, test_prots = read_data(test_csv)
-    print(len(test_drugs),len(test_prots))
-    #train_drugs, train_prots, train_Y = np.asarray(train_drugs), np.asarray(train_prots), np.asarray(train_Y)
-    test_drugs, test_prots = np.asarray(test_drugs), np.asarray(test_prots)
+    train_drugs, train_prots, train_Y = read_data(train_csv)
+    test_drugs, test_prots,test_Y = read_data(test_csv)
+
+    train_drugs, train_prots, train_Y = np.asarray(train_drugs), np.asarray(train_prots), np.asarray(train_Y)
+    test_drugs, test_prots, test_Y = np.asarray(test_drugs), np.asarray(test_prots), np.asarray(test_Y)
     
-    #train_data = DTADataset(root='dataset', dataset=dataset + '_' + 'train', drug_smiles=train_drugs, target_sequence=train_prots, y=train_Y,
-                            #smile_graph=smile_graph,target_graph=target_graph)
+    train_data = DTADataset(root='dataset', dataset=dataset + '_' + 'train', drug_smiles=train_drugs, target_sequence=train_prots, y=train_Y,
+                            smile_graph=smile_graph,target_graph=target_graph)
     
-    test_data = DTADataset(root='dataset', dataset=dataset + '_' + 'test', drug_smiles=test_drugs, target_sequence=test_prots,
+    test_data = DTADataset(root='dataset', dataset=dataset + '_' + 'test', drug_smiles=test_drugs, target_sequence=test_prots, y=test_Y,
                         smile_graph=smile_graph, target_graph=target_graph)
 
-    return test_data
+    return train_data,test_data
