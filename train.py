@@ -10,7 +10,7 @@ import argparse
 from preprocessing import create_dataset
 from metrics import *
 
-from models.model import MGNNDTA
+from models.model import MMSGDTA
 from utils_copy import *
 from log.train_logger import TrainLogger
 
@@ -18,6 +18,7 @@ from log.train_logger import TrainLogger
 def main():
     parser = argparse.ArgumentParser()
     # Add argument
+    parser.add_argument('--save_dir', required=True, help='/results')
     parser.add_argument('--dataset', required=True, help='davis or kiba')
     parser.add_argument('--save_model', action='store_true', help='whether save model or not')
     parser.add_argument('--lr', type=float, default=5e-4, help='learning rate')
@@ -25,7 +26,7 @@ def main():
     args = parser.parse_args()
 
     params = dict(
-        save_dir="/results/all",
+        save_dir=args.save_dir,
         dataset=args.dataset,
         save_model=args.save_model,
         lr=args.lr,
@@ -43,7 +44,7 @@ def main():
     test_loader = DataLoader(test_data, batch_size=BATCH_SZIE, shuffle=False,  collate_fn=collate)
 
     device = torch.device("cuda:0")
-    model = MGNNDTA().to(device)
+    model = MMSGDTA().to(device)
 
     epochs = 3000
     best_mse = 1000
