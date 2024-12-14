@@ -57,7 +57,7 @@ python test.py --dataset dataset --model_path model_path
     
 
     ```markdown
-    python split.py --dataset davis --SEED 42
+    python split.py --dataset dataset --SEED seed
     ```
   - --dataset: davis or kiba
   - --SEED: The random seed can be set by "SEED"
