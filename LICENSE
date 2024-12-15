@@ -1,57 +1,21 @@
-                                 Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
+MIT License
 
-TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+Copyright (c) [2024] [Jiahao Xu]
 
-1. Definitions.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-  "License" shall mean the terms and conditions for use, reproduction, and distribution as defined in this document.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-  "Licensor" shall mean the copyright owner or entity authorized by the copyright owner that is granting the License.
-
-  "You" (or "Your") shall mean an individual or Legal Entity exercising permissions granted by this License.
-
-  "Source" form shall mean the preferred form for making modifications, including but not limited to software source code, documentation source, and configuration files.
-
-  "Object" form shall mean any form resulting from mechanical transformation or translation of a Source form, including but not limited to compiled object code, generated documentation, and conversions to other media types.
-
-  "Work" shall mean the work of authorship, whether in Source or Object form, made available under the License.
-
-  "Contribution" shall mean any work of authorship, including the original version of the Work and any modifications or additions to that Work or the Work as a whole, that is submitted to the Licensor for inclusion in the Work.
-
-  "Contributor" shall mean Licensor and any individual or Legal Entity that submits a Contribution to the Work.
-
-2. Grant of Copyright License.
-   
-  Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to use, reproduce, make available, modify, distribute, display, and perform the Work.
-
-3. Grant of Patent License.
-   
-  Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable (except as stated in this section) patent license to make, have made, use, offer to sell, sell, import, and otherwise transfer the Work, where such license applies only to those patent claims licensable by such Contributor that are necessarily infringed by their Contribution(s) alone or by combination of their Contribution(s) with the Work.
-
-4. Redistribution.
-   
-  You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that you meet the following conditions:
-   
-   a) You must provide a copy of this License in any distribution of the Work.
-   b) You must state the changes made to the Work, if any, in a manner that is reasonably calculated to provide notice to recipients of the changes.
-   c) You must not use the names, trademarks, or other identifiers of the Licensor, except as required to comply with the conditions of this License.
-
-5. Submission of Contributions.
-   
-  If You submit a Contribution to the Work, You shall provide a signed Contributor License Agreement (CLA) stating that You have the right to grant the contributions under the terms of the License.
-
-6. No Warranty.
-   
-  The Work is licensed on an "AS IS" basis, without warranties or conditions of any kind, either express or implied, including but not limited to the implied warranties of merchantability, fitness for a particular purpose, or non-infringement.
-
-7. Limitation of Liability.
-   
-  In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, shall any Contributor be liable to You for damages, including any direct, indirect, special, incidental, or consequential damages arising from the use of the Work, even if advised of the possibility of such damages.
-
-8. Accepting the License.
-   
-  By using, reproducing, or distributing the Work, you agree to the terms of this License.
-
-Copyright [year] [fullname]
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
