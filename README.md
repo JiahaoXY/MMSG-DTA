@@ -4,7 +4,7 @@ MMSG-DTA combines graph neural networks with Transformers to effectively capture
 ![Overview of ours model](./figures/overview.png)
 
 ## License
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT - see the [LICENSE](LICENSE) file for details.
 ## Dataset
 All data used in this paper are publicly available can be accessed here:  
 - Davis and KIBA: https://github.com/hkmztrk/DeepDTA/tree/master/data  
