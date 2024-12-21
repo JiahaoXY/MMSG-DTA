@@ -9,7 +9,7 @@ import torch.nn.functional as F
 import argparse
 from preprocessing import create_dataset
 
-from modelV4 import MGNNDTA
+from models.model import MMSGDTA
 from utils_copy import *
 from log.train_logger import TrainLogger
 from metrics import *
@@ -46,7 +46,7 @@ def main():
     
     print(dataset,model_file_name)
     device = torch.device("cuda:0")
-    model = MGNNDTA().to(device)
+    model = MMSGDTA().to(device)
     _,test_data = create_dataset(dataset)
     test_loader = DataLoader(test_data, batch_size=512, shuffle=False, collate_fn=collate)
     
@@ -54,7 +54,7 @@ def main():
         model.load_state_dict(torch.load(model_file_name,map_location=torch.device('cpu')),strict=False)
         G,P = predicting(model, device, test_loader)
         ret = [mse(G, P), rmse(G, P), get_cindex(G, P),  get_rm2(G, P), pearson(G, P), spearman(G, P)]
-        ret = ['davis',"MGNNDTA"]+[round(e,3) for e in ret]
+        ret = ['davis',"MMSGDTA"]+[round(e,3) for e in ret]
         result += [ret]
         print('dataset,model,mse,rmse,ci,r2s,pearson,spearman')
         print(ret)
