@@ -483,7 +483,7 @@ class proSequenceRePresentation(nn.Module):
         return x
 
 
-class MGNNDTA(torch.nn.Module):
+class MMSGDTA(torch.nn.Module):
     """
     This is the main model for Multimodal Graph Neural Network-based Drug-Target Affinity prediction (MGNNDTA).
     It combines molecular graph representations, protein graph representations, and protein sequences 
@@ -492,7 +492,7 @@ class MGNNDTA(torch.nn.Module):
 
     def __init__(self, num_features_pro=33, num_features_mol=88, embed_dim=128, dropout=0.2):
         """
-        Initializes the MGNNDTA model.
+        Initializes the MMSGDTA model.
         
         Parameters:
             num_features_pro (int): The number of features in the protein graph.
@@ -500,9 +500,9 @@ class MGNNDTA(torch.nn.Module):
             embed_dim (int): The embedding dimension for node features.
             dropout (float): The dropout rate for regularization.
         """
-        super(MGNNDTA, self).__init__()
+        super(MMSGDTA, self).__init__()
 
-        print('MGNNDTA Loading ...')
+        print('MMSGDTA Loading ...')
         
         # Initialize encoders for each modality
         self.ligand_encoder = molGraphRepresentation(num_features_mol, num_layers=4, embedding_dim=embed_dim, dropout=dropout)
